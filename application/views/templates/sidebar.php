@@ -83,7 +83,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?= base_url('admin/statistik') ?>" class="nav-link">
+						<a href="<?= base_url('admin/statistik_pendapatan') ?>" class="nav-link">
 							<i class="nav-icon fas fa-chart-pie text-info"></i>
 							<p>
 								Statistik Pendapatan

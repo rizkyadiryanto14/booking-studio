@@ -37,6 +37,9 @@ $route['admin/laporan_pembayaran'] = 'Backend/Admin/Laporan_pembayaran';
 $route['admin/get_data_laporanpembayaran'] = 'Backend/Admin/Laporan_pembayaran/get_data_laporanpembayaran';
 $route['admin/unduh_laporan_pembayaran'] = 'Backend/Admin/Laporan_pembayaran/unduh';
 
+//admin - Statistik Pendapatan
+$route['admin/statistik_pendapatan'] = 'Backend/Admin/Statistik_pendapatan';
+
 //jadwal
 $route['admin/jadwal_studio'] = 'Backend/Admin/Jadwal';
 $route['admin/api/jadwal'] = 'Backend/Admin/Jadwal/listing_studio';
