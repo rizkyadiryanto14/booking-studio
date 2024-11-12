@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @property $db
+ */
+
 class Pemesanan_model extends CI_Model
 {
 	public function get_pemesanan_by_user($id_pengguna)
@@ -28,5 +32,16 @@ class Pemesanan_model extends CI_Model
 	{
 		$this->db->where('id_pemesanan', $id_pemesanan);
 		return $this->db->update('pemesanan', ['status_pembayaran' => $status]);
+	}
+
+	/**
+	 * @author Rizky Adi Ryanto
+	 * @link github.com/rizkyadiryanto14
+	 * Model untuk laporan pemesanan
+	 */
+
+	public function get_all_laporan_pemesanan()
+	{
+		return $this->db->get('laporan_pemesanan')->result();
 	}
 }
