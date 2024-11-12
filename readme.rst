@@ -44,7 +44,7 @@ Cara Installasi
 
 Screenshots
 -----------
-.. image:: path/to/dashboard_screenshot.png
+.. image:: https://github.com/rizkyadiryanto14/booking-studio/blob/statistik_pendapatan/assets/images/studio1.jpg
    :alt: Dashboard Admin
 
 *Contoh tampilan Dashboard Admin*
