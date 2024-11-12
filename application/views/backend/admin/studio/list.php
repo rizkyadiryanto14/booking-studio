@@ -8,12 +8,12 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Dashboard</h1>
+					<h1 class="m-0">Studio</h1>
 				</div><!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">Dashboard</li>
+						<li class="breadcrumb-item active">Studio</li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -35,15 +35,15 @@
 						<div class="table-responsive">
 							<table id="studio_data" class="table table-hover">
 								<thead>
-									<tr>
-										<th>No</th>
-										<th>Nama Studio</th>
-										<th>Jenis Studio</th>
-										<th>Harga per Jam</th>
-										<th>Ketersediaan</th>
-										<th>Foto Studio</th>
-										<th>Action</th>
-									</tr>
+								<tr>
+									<th>No</th>
+									<th>Nama Studio</th>
+									<th>Jenis Studio</th>
+									<th>Harga per Jam</th>
+									<th>Ketersediaan</th>
+									<th>Foto Studio</th>
+									<th>Action</th>
+								</tr>
 								</thead>
 							</table>
 						</div>
@@ -58,7 +58,7 @@
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 
 <script>
-	$(document).ready(function() {
+	$(document).ready(function () {
 		var dataTable = $('#studio_data').DataTable({
 			"processing": true,
 			"serverSide": true,
