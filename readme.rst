@@ -1,71 +1,59 @@
-###################
-What is CodeIgniter
-###################
+Sistem Informasi Booking Studio - Motomesa.id
+=============================================
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Project ini merupakan aplikasi booking studio untuk Motomesa.id yang memudahkan pengelolaan pemesanan dan pembayaran secara online. Dibangun menggunakan framework Codeigniter 3 dengan backend MySQL dan PHP 8.0.
 
-*******************
-Release Information
-*******************
+Teknologi yang Digunakan
+-------------------------
+- **Codeigniter 3**
+- **MySQL**
+- **PHP 8.0**
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+Fitur
+-----
+**Admin**
+- Kelola Studio: Tambah, ubah, dan hapus informasi studio.
+- Kelola Jadwal: Atur jadwal ketersediaan studio.
+- Kelola Users: Manajemen pengguna aplikasi.
 
-**************************
-Changelog and New Features
-**************************
+**Laporan & Statistik**
+- Kelola Laporan Pembayaran: Lihat dan kelola laporan transaksi pembayaran.
+- Kelola Laporan Pemesanan: Pantau laporan pemesanan studio.
+- Laporan Statistik Pendapatan: Lihat statistik pendapatan dari penyewaan studio.
+- Laporan Studio Terfavorit: Laporan studio dengan pemesanan terbanyak.
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+Sistem Pembayaran Terintegrasi
+------------------------------
+Proyek ini telah terintegrasi dengan payment gateway **Midtrans** untuk memfasilitasi pembayaran online secara aman dan cepat.
 
-*******************
-Server Requirements
-*******************
+Cara Installasi
+---------------
+1. Clone repository ini
+   ::
+   
+      git clone https://github.com/username/repo-name.git
 
-PHP version 5.6 or newer is recommended.
+2. Jalankan ``composer install`` untuk menginstal dependencies.
+3. Atur konfigurasi database di ``application/config/database.php``.
+4. Jalankan migrasi database
+   ::
+   
+      php index.php migrate
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+5. Siapkan API key dari Midtrans dan konfigurasikan di file environment.
 
-************
-Installation
-************
+Screenshots
+-----------
+.. image:: path/to/dashboard_screenshot.png
+   :alt: Dashboard Admin
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+*Contoh tampilan Dashboard Admin*
 
-*******
-License
-*******
+.. image:: path/to/payment_report_screenshot.png
+   :alt: Laporan Pembayaran
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+*Contoh tampilan Laporan Pembayaran*
 
-*********
-Resources
-*********
+---
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+Dibuat dengan ❤️ oleh Tim Motomesa.id
