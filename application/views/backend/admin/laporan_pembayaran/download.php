@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Download Laporan Pemesanan</title>
+	<title>Download Laporan Pembayaran</title>
 	<style>
 		body {
 			font-family: Arial, sans-serif;
@@ -58,7 +58,7 @@
 	</style>
 </head>
 <body>
-<h1>Laporan Pemesanan</h1>
+<h1>Laporan Pembayaran</h1>
 <p class="download-date">Tanggal Download: <?php echo date('d-m-Y'); ?></p>
 
 <table>
@@ -66,24 +66,26 @@
 	<tr>
 		<th>No</th>
 		<th>Nama Pengguna</th>
-		<th>Nama Studio</th>
-		<th>Tanggal</th>
-		<th>Waktu</th>
+		<th>No.Pemesanan</th>
+		<th>Tipe Pembayaran</th>
+		<th>Status Transaksi</th>
 		<th>Total</th>
+		<th>Waktu</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
 		<?php
 		$no = 1;
-		if (isset($laporan_pemesanan)) {
-			foreach ($laporan_pemesanan as $item) { ?>
+		if (isset($laporan_pembayaran)) {
+			foreach ($laporan_pembayaran as $item) { ?>
 				<td><?= $no++ ?></td>
 				<td><?= $item->nama_pengguna ?></td>
-				<td><?= $item->nama_studio ?></td>
-				<td><?= $item->tanggal_pemesanan ?></td>
-				<td><?= $item->waktu_pemesanan ?></td>
-				<td><?= $item->total_harga ?></td>
+				<td><?= $item->id_pemesanan ?></td>
+				<td><?= $item->payment_type ?></td>
+				<td><?= $item->transaction_status ?></td>
+				<td><?= $item->gross_amount ?></td>
+				<td><?= $item->transaction_time ?></td>
 			<?php }
 		} ?>
 	</tr>
@@ -101,7 +103,7 @@
 		const formattedDate = now.getFullYear() + "_" + (now.getMonth() + 1).toString().padStart(2, '0') + "_" + now.getDate().toString().padStart(2, '0');
 		const formattedTime = now.getHours().toString().padStart(2, '0') + "_" + now.getMinutes().toString().padStart(2, '0') + "_" + now.getSeconds().toString().padStart(2, '0');
 
-		const fileName = `Laporan_Pemesanan_${formattedDate}_${formattedTime}.pdf`;
+		const fileName = `Laporan_Pembayaran_${formattedDate}_${formattedTime}.pdf`;
 
 		html2pdf().from(element).save(fileName);
 	}

@@ -87,7 +87,7 @@ class Laporan_pemesanan extends CI_Controller
 	}
 
 	/**
-	 * Controller untuk unduh laporan pembayaran
+	 * Controller untuk unduh laporan pemesanan
 	 */
 
 	/**

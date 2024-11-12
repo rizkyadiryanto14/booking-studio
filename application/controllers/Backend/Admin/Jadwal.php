@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * Controller untuk mengatur logika jadwal studio
+ *
+ * @author Rizky Adi Ryanto
+ * @link github.com/rizkyadiryanto14
+ *
  * @property $session
  * @property $input
  * @property $model
@@ -15,25 +20,37 @@ class Jadwal extends CI_Controller
 		$this->load->model('Jadwal_model', 'model');
 	}
 
-	public function index()
+	/**
+	 * @return void
+	 */
+	public function index(): void
 	{
 		$this->load->view('backend/admin/jadwal/list');
 	}
 
-	public function listing_studio()
+	/**
+	 * @return void
+	 */
+	public function listing_studio(): void
 	{
 		$data = $this->model->listing_studio();
 		echo json_encode($data);
 	}
 
-	public function get_jadwal_by_id()
+	/**
+	 * @return void
+	 */
+	public function get_jadwal_by_id(): void
 	{
 		$id_jadwal = $this->input->post('id_jadwal');
 		$jadwal = $this->model->get_jadwal_by_id($id_jadwal);
 		echo json_encode($jadwal);
 	}
-	
-	public function insert()
+
+	/**
+	 * @return void
+	 */
+	public function insert(): void
 	{
 		$this->form_validation->set_rules('id_studio', 'Studio', 'required');
 		$this->form_validation->set_rules('tanggal_jadwal', 'Tanggal Jadwal', 'required');
@@ -61,7 +78,10 @@ class Jadwal extends CI_Controller
 		redirect(base_url('admin/jadwal_studio'));
 	}
 
-	public function update()
+	/**
+	 * @return void
+	 */
+	public function update(): void
 	{
 		$this->form_validation->set_rules('id_studio', 'Studio', 'required');
 		$this->form_validation->set_rules('tanggal_jadwal', 'Tanggal Jadwal', 'required');
@@ -89,7 +109,10 @@ class Jadwal extends CI_Controller
 		redirect(base_url('admin/jadwal_studio'));
 	}
 
-	public function get_data_jadwal()
+	/**
+	 * @return void
+	 */
+	public function get_data_jadwal(): void
 	{
 		// Panggil data dari model
 		$jadwalData = $this->model->make_datatables();
@@ -107,7 +130,6 @@ class Jadwal extends CI_Controller
 			$data[] = $this->prepare_jadwal_row($jadwal, $counter++);
 		}
 
-		// Siapkan hasil untuk DataTables
 		$output = [
 			"draw" => intval($this->input->post("draw")),
 			"recordsTotal" => $this->model->get_all_data(),
@@ -118,7 +140,13 @@ class Jadwal extends CI_Controller
 		echo json_encode($output);
 	}
 
-	private function prepare_jadwal_row($jadwal, $counter)
+	/**
+	 * @param $jadwal
+	 * @param $counter
+	 *
+	 * @return array
+	 */
+	private function prepare_jadwal_row($jadwal, $counter): array
 	{
 		return [
 			$counter,
@@ -132,12 +160,22 @@ class Jadwal extends CI_Controller
 		];
 	}
 
-	private function format_rupiah($angka)
+	/**
+	 * @param $angka
+	 *
+	 * @return string
+	 */
+	private function format_rupiah($angka): string
 	{
 		return 'Rp.' . number_format($angka, 0, ',', '.');
 	}
 
-	private function generate_status_badge($status)
+	/**
+	 * @param $status
+	 *
+	 * @return string
+	 */
+	private function generate_status_badge($status): string
 	{
 		if ($status === "tersedia") {
 			return '<span class="badge badge-success">Tersedia</span>';
@@ -146,7 +184,14 @@ class Jadwal extends CI_Controller
 		}
 	}
 
-	private function format_jadwal_waktu($tanggal, $waktu_mulai, $waktu_selesai)
+	/**
+	 * @param $tanggal
+	 * @param $waktu_mulai
+	 * @param $waktu_selesai
+	 *
+	 * @return string
+	 */
+	private function format_jadwal_waktu($tanggal, $waktu_mulai, $waktu_selesai): string
 	{
 		$formattedDate = date('d-m-Y', strtotime($tanggal));
 		$formattedStartTime = date('H:i', strtotime($waktu_mulai));
@@ -155,12 +200,22 @@ class Jadwal extends CI_Controller
 		return $formattedDate . ' | ' . $formattedStartTime . ' - ' . $formattedEndTime;
 	}
 
-	private function generate_foto_studio($foto_studio)
+	/**
+	 * @param $foto_studio
+	 *
+	 * @return string
+	 */
+	private function generate_foto_studio($foto_studio): string
 	{
 		return '<img src="' . base_url('uploads/foto_studio/' . $foto_studio) . '" alt="Foto Studio" style="width: 100px; height: auto;" />';
 	}
 
-	private function generate_action_buttons($id_jadwal)
+	/**
+	 * @param $id_jadwal
+	 *
+	 * @return string
+	 */
+	private function generate_action_buttons($id_jadwal): string
 	{
 		$editButton = '<a href="javascript:void(0);" data-id="' . $id_jadwal . '" class="btn btn-info btn-xs update"><i class="fa fa-edit"></i></a>';
 		$deleteButton = '<a href="' . site_url('admin/jadwal/delete/' . $id_jadwal) . '" onclick="return confirm(\'Apakah anda yakin?\')" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></a>';
@@ -168,8 +223,12 @@ class Jadwal extends CI_Controller
 		return $editButton . ' ' . $deleteButton;
 	}
 
-
-	public function delete($id)
+	/**
+	 * @param $id
+	 *
+	 * @return void
+	 */
+	public function delete($id): void
 	{
 		if ($id) {
 			$delete = $this->model->delete($id);
