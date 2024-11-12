@@ -44,4 +44,64 @@ class Pemesanan_model extends CI_Model
 	{
 		return $this->db->get('laporan_pemesanan')->result();
 	}
+
+	/**
+	 * @return void
+	 */
+	public function make_query(): void
+	{
+		$this->db->select('laporan_pemesanan.*')
+			->from('laporan_pemesanan');
+
+		$search_value = $_POST['search']['value'] ?? null;
+
+		if (!empty($search_value)) {
+			$this->db->group_start()
+				->like('nama_pengguna', $search_value)
+				->or_like('nama_studio', $search_value)
+				->group_end();
+		}
+
+		$order_column = $_POST['order'][0]['column'] ?? null;
+		$order_dir = $_POST['order'][0]['dir'] ?? 'DESC';
+
+		if (!empty($order_column)) {
+			$this->db->order_by($order_column, $order_dir);
+		} else {
+			$this->db->order_by('id_pemesanan', 'DESC');
+		}
+	}
+
+	public function make_datatables()
+	{
+		$this->make_query();
+
+		$length = $_POST['length'] ?? -1;
+		$start = $_POST['start'] ?? 0;
+
+		if ($length != -1) {
+			$this->db->limit($length, $start);
+		}
+
+		$query = $this->db->get();
+
+		if ($query === false) {
+			log_message('error', 'Query failed: ' . $this->db->last_query());
+			return false;
+		}
+
+		return $query->result();
+	}
+
+	public function get_filtered_data()
+	{
+		$this->make_query();
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
+
+	public function get_all_data()
+	{
+		return $this->db->count_all('laporan_pemesanan');
+	}
 }

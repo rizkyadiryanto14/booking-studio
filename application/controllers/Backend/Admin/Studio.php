@@ -39,7 +39,7 @@ class Studio extends CI_Controller
 			$data[] = $this->prepare_studio_row($studio, $counter++);
 		}
 
-		// Siapkan hasil untuk DataTables
+		//  hasil untuk DataTables
 		$output = [
 			"draw" => intval($this->input->post("draw")),
 			"recordsTotal" => $this->model->get_all_data(),

@@ -27,6 +27,11 @@ $route['admin/studio/update/(:num)'] = 'Backend/Admin/Studio/update/$1';
 $route['admin/profile'] = 'Backend/Admin/Profile';
 $route['admin/update_profile'] = 'Backend/Admin/Profile/update_profile';
 
+//admin - Laporan Pemesanan
+$route['admin/laporan_pemesanan'] = 'Backend/Admin/Laporan_pemesanan';
+$route['admin/get_data_laporanpemesanan'] = 'Backend/Admin/Laporan_pemesanan/get_data_laporanpemesanan';
+$route['admin/unduh_laporan_pemesanan'] = 'Backend/Admin/Laporan_pemesanan/unduh';
+
 //jadwal
 $route['admin/jadwal_studio'] = 'Backend/Admin/Jadwal';
 $route['admin/api/jadwal'] = 'Backend/Admin/Jadwal/listing_studio';

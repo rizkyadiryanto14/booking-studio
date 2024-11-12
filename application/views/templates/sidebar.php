@@ -67,7 +67,7 @@
 					<!-- Reports Section -->
 					<li class="nav-header">Reports</li>
 					<li class="nav-item">
-						<a href="<?= base_url('admin/laporan') ?>" class="nav-link">
+						<a href="<?= base_url('admin/laporan_pemesanan') ?>" class="nav-link">
 							<i class="nav-icon fas fa-file-alt text-success"></i>
 							<p>
 								Laporan Pemesanan
@@ -75,7 +75,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?= base_url('admin/pembayaran') ?>" class="nav-link">
+						<a href="<?= base_url('admin/laporan_pembayaran') ?>" class="nav-link">
 							<i class="nav-icon fas fa-credit-card text-warning"></i>
 							<p>
 								Laporan Pembayaran
