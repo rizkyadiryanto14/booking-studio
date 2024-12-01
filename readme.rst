@@ -62,5 +62,3 @@ Screenshots
 *Contoh tampilan Kelola Studio*
 
 -----------
-
-Dibuat dengan ❤️ oleh Rizky Adi Ryanto
