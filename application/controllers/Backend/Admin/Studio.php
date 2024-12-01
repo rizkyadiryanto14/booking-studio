@@ -21,7 +21,10 @@ class Studio extends CI_Controller
 		$this->load->view('backend/admin/studio/list');
 	}
 
-	public function get_data_studio()
+	/**
+	 * @return void
+	 */
+	public function get_data_studio(): void
 	{
 		// Panggil data dari model
 		$studioData = $this->model->make_datatables();
@@ -50,7 +53,13 @@ class Studio extends CI_Controller
 		echo json_encode($output);
 	}
 
-	private function prepare_studio_row($studio, $counter)
+	/**
+	 * @param $studio
+	 * @param $counter
+	 *
+	 * @return array
+	 */
+	private function prepare_studio_row($studio, $counter): array
 	{
 		return [
 			$counter,
@@ -63,12 +72,22 @@ class Studio extends CI_Controller
 		];
 	}
 
-	private function format_rupiah($angka)
+	/**
+	 * @param $angka
+	 *
+	 * @return string
+	 */
+	private function format_rupiah($angka): string
 	{
 		return 'Rp.' . number_format($angka, 0, ',', '.');
 	}
 
-	private function generate_status_badge($ketersediaan)
+	/**
+	 * @param $ketersediaan
+	 *
+	 * @return string
+	 */
+	private function generate_status_badge($ketersediaan): string
 	{
 		if ($ketersediaan === "tersedia") {
 			return '<span class="badge badge-success">Tersedia</span>';
@@ -77,12 +96,22 @@ class Studio extends CI_Controller
 		}
 	}
 
-	private function generate_foto_studio($foto_studio)
+	/**
+	 * @param $foto_studio
+	 *
+	 * @return string
+	 */
+	private function generate_foto_studio($foto_studio): string
 	{
 		return '<img src="' . base_url('uploads/foto_studio/' . $foto_studio) . '" alt="Foto Studio" style="width: 300px; height: auto;" />';
 	}
 
-	private function generate_action_buttons($id_studio)
+	/**
+	 * @param $id_studio
+	 *
+	 * @return string
+	 */
+	private function generate_action_buttons($id_studio): string
 	{
 		$editButton = '<a href="' . site_url('admin/studio/edit/' . $id_studio) . '" class="btn btn-info btn-xs update"><i class="fa fa-edit"></i></a>';
 		$deleteButton = '<a href="' . site_url('admin/studio/delete/' . $id_studio) . '" onclick="return confirm(\'Apakah anda yakin?\')" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></a>';
@@ -90,12 +119,20 @@ class Studio extends CI_Controller
 		return $editButton . ' ' . $deleteButton;
 	}
 
-	public function AddStudio()
+	/**
+	 * @return void
+	 */
+	public function AddStudio(): void
 	{
 		$this->load->view('backend/admin/studio/tambah');
 	}
 
-	public function edit($id)
+	/**
+	 * @param $id
+	 *
+	 * @return void
+	 */
+	public function edit($id): void
 	{
 		if ($id) {
 			$data['studio'] = $this->model->get_by_id($id);
@@ -107,7 +144,10 @@ class Studio extends CI_Controller
 
 	}
 
-	public function insert()
+	/**
+	 * @return void
+	 */
+	public function insert(): void
 	{
 		// Validasi form
 		$this->form_validation->set_rules('nama', 'Nama Studio', 'trim|required');
@@ -116,11 +156,9 @@ class Studio extends CI_Controller
 		$this->form_validation->set_rules('ketersediaan', 'Ketersediaan', 'trim|required');
 
 		if (!$this->form_validation->run()) {
-			// Jika validasi gagal, kembalikan pesan error
 			echo json_encode(['status' => 'error', 'message' => validation_errors()]);
 			return;
 		} else {
-			// Konfigurasi upload file
 			$config['upload_path'] = './uploads/foto_studio/';
 			$config['allowed_types'] = 'jpg|jpeg|png';
 			$config['max_size'] = 2048; // 2MB maksimum
@@ -154,8 +192,12 @@ class Studio extends CI_Controller
 		}
 	}
 
-
-	public function update($id)
+	/**
+	 * @param $id
+	 *
+	 * @return void
+	 */
+	public function update($id): void
 	{
 		// Validasi form
 		$this->form_validation->set_rules('nama', 'Nama Studio', 'trim|required');
@@ -213,7 +255,12 @@ class Studio extends CI_Controller
 		}
 	}
 
-	public function delete($id)
+	/**
+	 * @param $id
+	 *
+	 * @return void
+	 */
+	public function delete($id): void
 	{
 		$studio = $this->model->get_by_id($id);
 

@@ -66,3 +66,7 @@ $route['booking/pesan_slot/(:num)/(:any)'] = 'Backend/Users/Booking/pesan_slot/$
 //pemesanan
 $route['users/pemesanan'] = 'Backend/Users/Pemesanan';
 $route['pembayaran/get_snap_token/(:num)'] = 'Backend/Users/Pembayaran/get_snap_token/$1';
+
+
+//studio_populer
+$route['admin/studio_terpopuler']  = 'Backend/Admin/Studio_populer';

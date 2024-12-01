@@ -14,13 +14,21 @@ class Booking extends CI_Controller
 		$this->load->helper('url');
 	}
 
-	public function index()
+	/**
+	 * @return void
+	 */
+	public function index(): void
 	{
 		$data['list_studio'] = $this->booking_model->get_all_booked_studio();
 		$this->load->view('backend/users/studio/list', $data);
 	}
 
-	public function available_studios_with_slots($id_studio)
+	/**
+	 * @param $id_studio
+	 *
+	 * @return void
+	 */
+	public function available_studios_with_slots($id_studio): void
 	{
 		$studio = $this->booking_model->get_studio_by_id($id_studio);
 
@@ -38,7 +46,15 @@ class Booking extends CI_Controller
 		$this->load->view('backend/users/studio/booking', $data);
 	}
 
-	private function generate_time_slots($start_time, $end_time, $interval, $bookedTimeSlots)
+	/**
+	 * @param $start_time
+	 * @param $end_time
+	 * @param $interval
+	 * @param $bookedTimeSlots
+	 *
+	 * @return array
+	 */
+	private function generate_time_slots($start_time, $end_time, $interval, $bookedTimeSlots): array
 	{
 		$start = strtotime($start_time);
 		$end = strtotime($end_time);
@@ -61,13 +77,25 @@ class Booking extends CI_Controller
 		return $slots;
 	}
 
-	private function is_slot_booked($start_time, $bookedTimeSlots)
+	/**
+	 * @param $start_time
+	 * @param $bookedTimeSlots
+	 *
+	 * @return bool
+	 */
+	private function is_slot_booked($start_time, $bookedTimeSlots): bool
 	{
 		$start_time_formatted = date('H:i', $start_time);
 		return in_array($start_time_formatted, $bookedTimeSlots);
 	}
 
-	public function pesan_slot($id_studio, $slot_time)
+	/**
+	 * @param $id_studio
+	 * @param $slot_time
+	 *
+	 * @return void
+	 */
+	public function pesan_slot($id_studio, $slot_time): void
 	{
 		$id_pengguna = $this->session->userdata('id_pengguna');
 
@@ -92,11 +120,10 @@ class Booking extends CI_Controller
 
 		if ($insert) {
 			$this->session->set_flashdata('success', 'Pemesanan berhasil, harap selesaikan pembayaran pada bagian Riwayat Pemesanan!');
-			redirect(base_url('users/studio_detail/' . $id_studio));
 		} else {
 			$this->session->set_flashdata('error', 'Pemesanan gagal, silakan coba lagi.');
-			redirect(base_url('users/studio_detail/' . $id_studio));
 		}
+		redirect(base_url('users/studio_detail/' . $id_studio));
 	}
 
 }

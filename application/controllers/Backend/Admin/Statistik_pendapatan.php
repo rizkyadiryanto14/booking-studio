@@ -13,7 +13,10 @@ class Statistik_pendapatan extends CI_Controller
 		$this->load->model('Statistik_model');
 	}
 
-	public function index()
+	/**
+	 * @return void
+	 */
+	public function index(): void
 	{
 		$year = $this->input->get('year') ?: date('Y');
 
