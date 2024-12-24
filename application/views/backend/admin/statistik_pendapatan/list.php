@@ -34,7 +34,7 @@
 						<div class="row">
 							<div class="col-md-6">
 								<h1>Grafik Pendapatan Bulanan untuk Tahun <?= $year ?></h1>
-								<form action="<?= base_url('statistik_pendapatan/index') ?>" method="get">
+								<form action="<?= base_url('dashboard') ?>" method="post">
 									<label for="year">Tahun:</label>
 									<input type="number" id="year" name="year" value="<?= $year ?>" min="2000"
 										   max="2100">

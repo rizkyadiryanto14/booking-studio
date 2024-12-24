@@ -28,7 +28,7 @@
 			<div class="row">
 
 				<!-- Dashboard for Admin (role 1) -->
-				<?php if($this->session->userdata('role') == 1): ?>
+				<?php if ($this->session->userdata('role') == 1): ?>
 					<!-- Stats Boxes for Admin -->
 					<div class="col-lg-3 col-6">
 						<div class="small-box bg-info">
@@ -83,7 +83,7 @@
 					<div class="col-lg-6">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Pendapatan per Bulan (Dummy)</h3>
+								<h3 class="card-title">Pendapatan per Bulan</h3>
 							</div>
 							<div class="card-body">
 								<canvas id="pendapatanChart"></canvas>
@@ -95,7 +95,7 @@
 					<div class="col-lg-6">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Status Pembayaran (Dummy)</h3>
+								<h3 class="card-title">Status Pembayaran</h3>
 							</div>
 							<div class="card-body">
 								<canvas id="pembayaranChart"></canvas>
@@ -104,7 +104,7 @@
 					</div>
 
 					<!-- Dashboard for User (role 2) -->
-				<?php elseif($this->session->userdata('role') == 2): ?>
+				<?php elseif ($this->session->userdata('role') == 2): ?>
 					<!-- Stats Boxes for User -->
 					<div class="col-lg-3 col-6">
 						<div class="small-box bg-primary">

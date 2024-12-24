@@ -110,10 +110,11 @@ class Pemesanan_model extends CI_Model
 	 * Model untuk riwayat pemesanan user
 	 */
 
-	public function make_query_riwayat(): void
+	public function make_query_riwayat($id_pengguna): void
 	{
-		$this->db->select('laporan_pemesanan.*')
-			->from('laporan_pemesanan');
+		$this->db->select('riwayat_pemesanan_user.*')
+			->from('riwayat_pemesanan_user')
+			->where('riwayat_pemesanan_user.id_pengguna', $id_pengguna);
 
 		$search_value = $_POST['search']['value'] ?? null;
 
@@ -134,9 +135,9 @@ class Pemesanan_model extends CI_Model
 		}
 	}
 
-	public function make_datatables_riwayat()
+	public function make_datatables_riwayat($id_pengguna): bool
 	{
-		$this->make_query();
+		$this->make_query_riwayat($id_pengguna);
 
 		$length = $_POST['length'] ?? -1;
 		$start = $_POST['start'] ?? 0;
@@ -155,15 +156,15 @@ class Pemesanan_model extends CI_Model
 		return $query->result();
 	}
 
-	public function get_filtered_data_riwayat()
+	public function get_filtered_data_riwayat($id_pengguna)
 	{
-		$this->make_query();
+		$this->make_query_riwayat($id_pengguna);
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
 
 	public function get_all_data_riwayat()
 	{
-		return $this->db->count_all('laporan_pemesanan');
+		return $this->db->count_all('riwayat_pemesanan_user');
 	}
 }

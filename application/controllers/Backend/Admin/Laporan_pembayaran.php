@@ -64,7 +64,7 @@ class Laporan_pembayaran extends CI_Controller
 			$laporan->transaction_status,
 			$laporan->gross_amount,
 			$laporan->transaction_time,
-			$this->generate_action_buttons($laporan->id_pembayaran)
+			//$this->generate_action_buttons($laporan->id_pembayaran)
 		];
 	}
 

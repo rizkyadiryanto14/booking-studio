@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 //default controller
-$route['default_controller'] = 'Auth';
+$route['default_controller'] = 'Home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -31,6 +31,7 @@ $route['admin/update_profile'] = 'Backend/Admin/Profile/update_profile';
 $route['admin/laporan_pemesanan'] = 'Backend/Admin/Laporan_pemesanan';
 $route['admin/get_data_laporanpemesanan'] = 'Backend/Admin/Laporan_pemesanan/get_data_laporanpemesanan';
 $route['admin/unduh_laporan_pemesanan'] = 'Backend/Admin/Laporan_pemesanan/unduh';
+$route['admin/laporan_pemesanan/delete/(:num)'] = 'Backend/Admin/Laporan_pemesanan/delete/$1';
 
 //admin - Laporan Pembayaran
 $route['admin/laporan_pembayaran'] = 'Backend/Admin/Laporan_pembayaran';
@@ -66,7 +67,8 @@ $route['booking/pesan_slot/(:num)/(:any)'] = 'Backend/Users/Booking/pesan_slot/$
 //pemesanan
 $route['users/pemesanan'] = 'Backend/Users/Pemesanan';
 $route['pembayaran/get_snap_token/(:num)'] = 'Backend/Users/Pembayaran/get_snap_token/$1';
+$route['user/get_data_riwayat/(:num)'] = 'Backend/Users/Pemesanan/get_data_riwayat/$1';
 
 
 //studio_populer
-$route['admin/studio_terpopuler']  = 'Backend/Admin/Studio_populer';
+$route['admin/studio_terpopuler'] = 'Backend/Admin/Studio_populer';

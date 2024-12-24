@@ -14,17 +14,26 @@ class Auth extends CI_Controller
 		$this->load->model('Auth_model', 'model');
 	}
 
-	public function index()
+	/**
+	 * @return void
+	 */
+	public function index(): void
 	{
 		$this->load->view('auth/login');
 	}
 
-	public function registrasi()
+	/**
+	 * @return void
+	 */
+	public function registrasi(): void
 	{
 		$this->load->view('auth/registrasi');
 	}
 
-	public function login()
+	/**
+	 * @return void
+	 */
+	public function login(): void
 	{
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'required');
@@ -54,10 +63,40 @@ class Auth extends CI_Controller
 
 	public function register()
 	{
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[pengguna.email]');
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		$this->form_validation->set_rules('alamat', 'alamat', 'required');
+		$this->form_validation->set_rules('no_telepon', 'Nomor Telepon', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
 
+		if (!$this->form_validation->run()) {
+			$this->session->set_flashdata('error', strip_tags(validation_errors()));
+		} else {
+			$data = [
+				'nama' => $this->input->post('nama'),
+				'email' => $this->input->post('email'),
+				'alamat' => $this->input->post('alamat'),
+				'no_telepon' => $this->input->post('no_telepon'),
+				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+				'role' => 2,
+			];
+
+			$insert = $this->model->insert($data);
+
+			if ($insert) {
+				$this->session->set_flashdata('success', 'Registrasi Berhasil');
+			} else {
+				$this->session->set_flashdata('error', 'Registrasi Gagal');
+			}
+			redirect(base_url('auth/login'));
+		}
+		redirect(base_url('auth/login'));
 	}
 
-	public function logout()
+	/**
+	 * @return void
+	 */
+	public function logout(): void
 	{
 		$this->session->sess_destroy();
 

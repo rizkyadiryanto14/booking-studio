@@ -4,6 +4,7 @@
  *
  * @property $Pemesanan_model
  * @property $input
+ * @property $session
  */
 
 class Laporan_pemesanan extends CI_Controller
@@ -80,10 +81,26 @@ class Laporan_pemesanan extends CI_Controller
 	 */
 	private function generate_action_buttons($id_pemesanan): string
 	{
-		$editButton = '<a href="' . site_url('admin/laporan_pemesanan/edit/' . $id_pemesanan) . '" class="btn btn-info btn-xs update"><i class="fa fa-edit"></i></a>';
+//		$editButton = '<a href="' . site_url('admin/laporan_pemesanan/edit/' . $id_pemesanan) . '" class="btn btn-info btn-xs update"><i class="fa fa-edit"></i></a>';
 		$deleteButton = '<a href="' . site_url('admin/laporan_pemesanan/delete/' . $id_pemesanan) . '" onclick="return confirm(\'Apakah anda yakin?\')" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></a>';
 
-		return $editButton . ' ' . $deleteButton;
+		return $deleteButton;
+	}
+
+	public function delete($id_pemesanan): void
+	{
+		if ($id_pemesanan) {
+			$delete = $this->Pemesanan_model->delete($id_pemesanan);
+			if ($delete) {
+				$this->session->set_flashdata('success', 'Data berhasil dihapus');
+			} else {
+				$this->session->set_flashdata('error', 'Data gagal dihapus');
+			}
+			redirect(base_url('admin/laporan_pemesanan'));
+		} else {
+			$this->session->set_flashdata('error', 'Data gagal dihapus');
+		}
+		redirect(base_url('admin/laporan_pemesanan'));
 	}
 
 	/**
